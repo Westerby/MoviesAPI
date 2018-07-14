@@ -110,7 +110,7 @@ class TestCommentsEndpoint(TestCase):
 
     def test_get_comment_by_id(self):
         movie = Movie.objects.filter(id=1)
-        Comment.objects.create(movieid = movie[0], comment="Absolutely shocking!")
+        Comment.objects.create(movieid=movie[0], comment="Absolutely shocking!")
         response = self.client.get('/comments/1/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
