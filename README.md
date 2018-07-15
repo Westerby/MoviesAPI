@@ -11,12 +11,12 @@ All example use requests library.
 #### POST /movies
 Creates new Movie object based on POST request body parameter: "title".
 
-`requests.post({hostname}/movies/, data={'title': 'return of the king'}`
+`requests.post('{hostname}/movies/', data={'title': 'return of the king'}`
 
 #### GET /movies
 Returns a json with all Movies existing in the database.
 
-`requests.get({hostname}/movies/)`
+`requests.get('{hostname}/movies/')`
 
 #### POST /comments
 Creates new Comment object based on POST request parameters: "movieid"
@@ -30,7 +30,7 @@ Returns a json with all Comments existing in the database.
 
 `requests.get('{hostname}/comments/')`
 
-#### GET /comments/<movieid>
+#### GET /comments/{movieid>}
 Request url can be parametrized to filter comments by movie id.
 
 `request.get('{hostname}/comments/{movieid}/')`

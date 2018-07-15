@@ -12,13 +12,13 @@ class MovieEndpoint(APIView):
     Returns a json with all Movies existing in the database.
     Example:
         Using requests library
-        requests.get({hostname}/movies/)
+        requests.get('{hostname}/movies/')
 
     post:
     Creates new Movie object based on POST request body parameter: "title".
     Example:
         Using requests library
-        requests.post({hostname}/movies/, data={'title': 'return of the king'}
+        requests.post('{hostname}/movies/', data={'title': 'return of the king'}
     """
     def get(self, request):
         movies = Movie.objects.all()
