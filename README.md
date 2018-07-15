@@ -6,7 +6,7 @@ information about movies and comments.
 
 ## Using API
 
-All examples use requests library.
+All examples use [requests](http://docs.python-requests.org/en/master/) library.
 
 #### POST /movies
 Creates new Movie object based on POST request body parameter: "title".
