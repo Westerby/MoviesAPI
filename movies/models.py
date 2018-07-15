@@ -31,3 +31,9 @@ class Comment(models.Model):
     id = models.AutoField(primary_key=True)
     movieid = models.ForeignKey(Movie, on_delete=models.CASCADE)
     comment = models.TextField()
+
+class Rating(models.Model):
+    id = models.AutoField(primary_key=True)
+    movieid = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    source = models.CharField(max_length=100)
+    rating = models.CharField(max_length=20)

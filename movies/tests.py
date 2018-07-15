@@ -2,7 +2,8 @@ from unittest.mock import patch
 from django.test import TestCase
 from rest_framework import status
 from movies import config
-from movies.models import Movie, Comment
+from movies.models import Movie, Comment, Rating
+from movies.serializers import MovieSerializer
 from movies.helpers import prepare_url
 from movies.test_helpers.mock_sock import MockSockContext
 from movies.test_helpers import mock_objects
@@ -21,6 +22,11 @@ class TestMoviesEndpoint(TestCase):
                 data = {"title": "lord of the rings"}
                 response = self.client.post('/movies/', data=data)
                 self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+                movie = Movie.objects.filter(title="The Lord of the Rings: The Return of the King")
+                self.assertIsNotNone(movie)
+                ratings = Rating.objects.filter(movieid=movie[0])
+                self.assertIsNotNone(ratings)
 
     def test_search_string_in_db(self):
         data = {"title": 'return of the'}

@@ -21,9 +21,9 @@ class MovieEndpoint(APIView):
         requests.post('{hostname}/movies/', data={'title': 'return of the king'}
     """
     def get(self, request):
-        movies = Movie.objects.all()
-        serializer = MovieSerializer(movies, many=True)
-        return Response(serializer.data)
+
+        response = helpers.prepare_movies_get_response()
+        return Response(response)
 
     def post(self, request):
         try:
@@ -84,6 +84,5 @@ class CommentsEndpoint(APIView):
 
         if not movie:
             return Response({"Error": config.NO_MOVIE_ID}, status=404)
-
         Comment.objects.create(movieid=movie[0], comment=comment)
         return Response(comment_json, status=201)
