@@ -3,8 +3,6 @@ from django.test import TestCase
 from rest_framework import status
 from movies import config
 from movies.models import Movie, Comment, Rating
-from movies.serializers import MovieSerializer
-from movies.helpers import prepare_url
 from movies.test_helpers.mock_sock import MockSockContext
 from movies.test_helpers import mock_objects
 
@@ -59,6 +57,16 @@ class TestMoviesEndpoint(TestCase):
                 response = self.client.post('/movies/', data=data)
                 self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
                 self.assertEqual(response.json()['Error'], config.MOVIE_NOT_FOUND)
+
+    def test_movie_has_no_title(self):
+        with MockSockContext(mock_objects.JSON_404_NO_TITLE) as ms:
+            with patch('movies.helpers.prepare_url',
+                       return_value="http://127.0.0.1") as prepare_url_function:
+                url = prepare_url_function("http://127.0.0.1")
+                data = {"title": "return of the king"}
+                response = self.client.post('/movies/', data=data)
+                self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+                self.assertEqual(response.json()['Error'], config.NO_TITLE_IN_RESPONSE)
 
     def test_get_movies(self):
         response = self.client.get('/movies/')

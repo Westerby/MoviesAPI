@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from movies import helpers
 from movies import config
-from .models import Movie, Comment
-from .serializers import MovieSerializer, CommentSerializer
+from .models import Comment
+from .serializers import CommentSerializer
 
 
 class MovieEndpoint(APIView):

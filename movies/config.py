@@ -33,3 +33,5 @@ NO_MOVIE_ID = """There is no movie for requested movie id.
 
 MOVIE_NOT_FOUND = """Movie not found.""".replace('\n',' ')
 
+NO_TITLE_IN_RESPONSE = """There is no 'Title' field in response body.
+Request could not be processed.""".replace('\n',' ')

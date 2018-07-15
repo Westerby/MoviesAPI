@@ -24,6 +24,7 @@ def prepare_movies_get_response():
         response.append(movie)
     return response
 
+
 def check_title_short_in_db(movie_title):
     """Checks if POST parameter - movie title - has already been used
     and exists in database.
@@ -87,10 +88,12 @@ def handle_omdbapi_response(movie_title, response):
         movie_json = response.json()
         if "Error" in movie_json:
             return Response({"Error": config.MOVIE_NOT_FOUND}, status=404)
-
-        full_title = movie_json['Title']
-        if check_title_full_in_db(full_title):
-            return Response({"Error": config.RESOURCE_FULL_EXISTS}, status=400)
+        try:
+            full_title = movie_json['Title']
+            if check_title_full_in_db(full_title):
+                return Response({"Error": config.RESOURCE_FULL_EXISTS}, status=400)
+        except KeyError as ex:
+            return Response({"Error": config.NO_TITLE_IN_RESPONSE}, status=404)
 
         valid_movie_json = validate_omdbapi_response_against_movie_model(movie_json)
         valid_movie_json['searchstring'] = movie_title

@@ -118,3 +118,13 @@ JSON_201 = b"""\
          "imdbID": "tt0167260",
          "imdbRating": "8.9",
          "imdbVotes": "1,401,555"}""".replace(b"\n", b"\r\n")
+
+
+
+JSON_404_NO_TITLE = b"""\
+        HTTP/1.1 200 OK
+        Content-Type: application/json
+        Content-length: 87
+
+        {"Actors": "Noel Appleby, Ali Astin, Sean Astin, David Aston",
+         "imdbVotes": "1,401,555"}""".replace(b"\n", b"\r\n")
