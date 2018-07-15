@@ -13,9 +13,9 @@ class TestMoviesEndpoint(TestCase):
         Movie.objects.create(**mock_objects.TEST_MOVIE_1)
 
     def test_create_new_movie(self):
-        with MockSockContext(mock_objects.JSON_201, port=90) as ms:
+        with MockSockContext(mock_objects.JSON_201, port=9000) as ms:
             with patch('movies.helpers.prepare_url',
-                       return_value="http://127.0.0.1:90") as prepare_url_function:
+                       return_value="http://127.0.0.1:9000") as prepare_url_function:
                 data = {"title": "lord of the rings"}
                 response = self.client.post('/movies/', data=data)
                 self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -32,9 +32,9 @@ class TestMoviesEndpoint(TestCase):
         self.assertEqual(response.json()['Error'], config.RESOURCE_SHORT_EXISTS)
 
     def test_movie_in_db(self):
-        with MockSockContext(mock_objects.JSON_400, port=90) as ms:
+        with MockSockContext(mock_objects.JSON_400, port=9000) as ms:
             with patch('movies.helpers.prepare_url',
-                       return_value="http://127.0.0.1:90") as prepare_url_function:
+                       return_value="http://127.0.0.1:9000") as prepare_url_function:
                 data = {"title": "return of the king"}
                 response = self.client.post('/movies/', data=data)
                 self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -48,18 +48,18 @@ class TestMoviesEndpoint(TestCase):
 
     def test_movie_not_found(self):
 
-        with MockSockContext(mock_objects.JSON_404, port=90) as ms:
+        with MockSockContext(mock_objects.JSON_404, port=9000) as ms:
             with patch('movies.helpers.prepare_url',
-                       return_value="http://127.0.0.1:90") as prepare_url_function:
+                       return_value="http://127.0.0.1:9000") as prepare_url_function:
                 data = {"title": "return 12345 asdfg"}
                 response = self.client.post('/movies/', data=data)
                 self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
                 self.assertEqual(response.json()['Error'], config.MOVIE_NOT_FOUND)
 
     def test_movie_has_no_title(self):
-        with MockSockContext(mock_objects.JSON_404_NO_TITLE, port=90) as ms:
+        with MockSockContext(mock_objects.JSON_404_NO_TITLE, port=9000) as ms:
             with patch('movies.helpers.prepare_url',
-                       return_value="http://127.0.0.1:90") as prepare_url_function:
+                       return_value="http://127.0.0.1:9000") as prepare_url_function:
                 data = {"title": "return of the king"}
                 response = self.client.post('/movies/', data=data)
                 self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
