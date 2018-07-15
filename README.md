@@ -1,14 +1,16 @@
 # Movies API
 
-Movies API is a simple REST API that enables user to create new resources
-- movies and comments about those movies, as well as retrieving
+Movies API is a simple REST API that enables user to create new resources movies
+and comments about those movies, as well as retrieving
 information about movies and comments.
 
 ## Using API
 
 #### POST /movies
 Creates new Movie object based on POST request body parameter: "title".
+
 Example:
+
 `requests.post({hostname}/movies/, data={'title': 'return of the king'}`
 
 #### GET /movies
