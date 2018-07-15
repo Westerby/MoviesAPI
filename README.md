@@ -22,12 +22,14 @@ $ python -m venv moviesapi
 $ cd moviesapi
 $ Scripts/activate.bat
 ```
-2.
-Clone repository.
+2. Clone repository.
 `$ git clone https://github.com/Westerby/MoviesAPI.git`
+
 3. Install requirements.
 `$ pip install -r requirements.txt`
+
 4. Run tests to check if everything is all right.
 `$ python manage.py test movies.tests`
+
 5. Run server.
 `$ python manage.py runserver`
