@@ -6,8 +6,6 @@ class MockSockContext(threading.Thread):
     """MockSock context manager mocks 3rd party APIs.
      It works similar to real HTTP server in localhost environment.
      It is good for testing API that relies on 3rd party API calls.
-     It works on port 80, because Python libraries like requests make
-     calls to port 80 by default.
 
      MockSock input parameter and return are the same: raw HTTP response
      string, that can be prepared by according to one's testing needs.
