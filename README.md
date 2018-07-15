@@ -6,7 +6,7 @@ information about movies and comments.
 
 ## Using API
 
-All example use requests library.
+All examples use requests library.
 
 #### POST /movies
 Creates new Movie object based on POST request body parameter: "title".
@@ -30,7 +30,7 @@ Returns a json with all Comments existing in the database.
 
 `requests.get('{hostname}/comments/')`
 
-#### GET /comments/{movieid>}
+#### GET /comments/{movieid}}
 Request url can be parametrized to filter comments by movie id.
 
 `request.get('{hostname}/comments/{movieid}/')`
